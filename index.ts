@@ -2,6 +2,22 @@ import { WebSocketServer } from "ws";
 
 const wss = new WebSocketServer({ port: 8080 });
 
+class Player {
+  name: string;
+  x: number;
+  y: number;
+
+  constructor(name: string, x: number, y: number) {
+    this.name = name;
+    this.x = x;
+    this.y = y;
+  }
+
+  serialize() {
+    return `player;${this.x};${this.y};${this.name}`;
+  }
+}
+
 wss.on("connection", function connection(ws) {
   ws.on("error", console.error);
 
@@ -9,5 +25,9 @@ wss.on("connection", function connection(ws) {
     console.log("received: %s", data);
   });
 
-  ws.send("something");
+  const players = [
+    new Player("slayer1000", 100, 100),
+    new Player("sheld0r", 270, 270),
+  ];
+  ws.send(players.map((p) => p.serialize()));
 });
