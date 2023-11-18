@@ -1,8 +1,11 @@
-function drawPlayer(canvas, x, y) {
+export function drawPlayer(canvas: HTMLCanvasElement, x: number, y: number) {
   if (!canvas.getContext) return;
 
   const radius = 70;
   const ctx = canvas.getContext("2d");
+  if (ctx === null) {
+    return
+  }
   ctx.beginPath();
   ctx.arc(x, y, radius, 0, 2 * Math.PI, false);
   ctx.fillStyle = "green";
@@ -12,10 +15,18 @@ function drawPlayer(canvas, x, y) {
   ctx.stroke();
 }
 
-function init() {
+export function init() {
+  console.log("Initializing...")
+  const isHtmlCanvas = (el: HTMLElement): el is HTMLCanvasElement => {
+    return el.tagName === "canvas"
+  }
   const canvas = document.getElementById("canvas");
-  canvas.setAttribute("width", window.screen.width);
-  canvas.setAttribute("height", window.screen.height);
+  if (canvas === null || !isHtmlCanvas(canvas)) {
+    return
+  }
+
+  canvas.setAttribute("width", String(window.screen.width));
+  canvas.setAttribute("height", String(window.screen.height));
 
   const FPS = 50;
   setInterval(() => {
@@ -27,4 +38,3 @@ function init() {
   return canvas;
 }
 
-const canvas = init();
