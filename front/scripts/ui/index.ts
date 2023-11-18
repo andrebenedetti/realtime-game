@@ -1,11 +1,8 @@
-export function drawPlayer(canvas: HTMLCanvasElement, x: number, y: number) {
-  if (!canvas.getContext) return;
 
+let ctx: CanvasRenderingContext2D
+
+export function drawPlayer(x: number, y: number) {
   const radius = 70;
-  const ctx = canvas.getContext("2d");
-  if (ctx === null) {
-    return
-  }
   ctx.beginPath();
   ctx.arc(x, y, radius, 0, 2 * Math.PI, false);
   ctx.fillStyle = "green";
@@ -15,26 +12,21 @@ export function drawPlayer(canvas: HTMLCanvasElement, x: number, y: number) {
   ctx.stroke();
 }
 
-export function init() {
-  console.log("Initializing...")
-  const isHtmlCanvas = (el: HTMLElement): el is HTMLCanvasElement => {
-    return el.tagName === "canvas"
-  }
-  const canvas = document.getElementById("canvas");
-  if (canvas === null || !isHtmlCanvas(canvas)) {
-    return
+export function initCanvas() {
+  const isHtmlCanvas = (el: HTMLElement): el is HTMLCanvasElement => el.tagName === "CANVAS"
+
+  const c = document.getElementById("canvas");
+  if (c === null || !isHtmlCanvas(c)) {
+    throw new Error("Couldn't initialize canvas. Can't recover from this error.")
   }
 
-  canvas.setAttribute("width", String(window.screen.width));
-  canvas.setAttribute("height", String(window.screen.height));
+  const context = c.getContext("2d")
+  if (!context) {
+    throw new Error("Couldn't initialize canvas. Can't recover from this error.")
+  }
 
-  const FPS = 50;
-  setInterval(() => {
-    for (let obj of window.world) {
-      drawPlayer(canvas, obj.x, obj.y);
-    }
-  }, 1000 / FPS);
-
-  return canvas;
+  ctx = context
+  c.setAttribute("width", String(window.screen.width));
+  c.setAttribute("height", String(window.screen.height));
 }
 
