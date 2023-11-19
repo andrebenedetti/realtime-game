@@ -1,9 +1,4 @@
-export type WorldObject = {
-    type: "player"
-    x: number
-    y: number
-    username: string
-}
+import type { WorldObject } from '../../../shared/runtime'
 
 export function storeWorldState(objs: WorldObject[]) {
     window.world = objs
