@@ -3,13 +3,14 @@ import { Player } from "../domain/player";
 
 // We'll have some bot users hardcoded here while we're in the early stages of development
 const players = [
-    new Player("slayer1000", 100, 100, "bot"),
-    new Player("sheld0r", 270, 270, "bot"),
+    new Player("slayer1000", 100, 100, "player"),
+    new Player("sheld0r", 480, 480, "bot"),
 ];
 
 export class Runtime {
     #state: {
         serialize?: () => string
+        tick?: () => void
     }[]
 
     constructor() {
@@ -20,11 +21,19 @@ export class Runtime {
         this.#state.push(obj)
     }
 
+    tick() {
+        this.#state.forEach(obj => {
+            if (obj.tick) {
+                obj.tick()
+            }
+        })
+    }
+
     serialize() {
         let serialized = ""
         this.#state.forEach(obj => {
             if (obj.serialize) {
-                serialized += obj.serialize()
+                serialized += obj.serialize() + ","
             }
         })
         return serialized
