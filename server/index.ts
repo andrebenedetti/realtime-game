@@ -13,7 +13,26 @@ wss.on("connection", function connection(ws) {
   });
 
   const messagesPerSecond = 60
+  const sampleRate = 100
+  let counter = 0;
   setInterval(() => {
+    if (counter === 0) {
+      console.time("tick")
+    }
+    runtime.tick()
+
+    if (counter === 0) {
+      console.time("serialize")
+    } else if (counter === sampleRate) {
+      console.timeEnd("tick")
+    }
+
     ws.send(runtime.serialize());
+    if (counter === sampleRate) {
+      console.timeEnd("serialize")
+      counter = 0
+    } else {
+      counter++
+    }
   }, 1000 / messagesPerSecond)
 });
