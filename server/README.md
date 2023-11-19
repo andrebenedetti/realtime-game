@@ -5,18 +5,9 @@ Run the following code on the dev tools console.
 Make sure to pass the correct port to the WebSocketServer
 
 `
-const { WebSocketServer } = require('ws');
+const socket = new WebSocket('ws://localhost:9900');
 
-const wss = new WebSocketServer({ port: 8080 });
-
-wss.on('connection', (ws) => {
-  ws.on('message', (data) => {
-    const msg = String.fromCharCode(...data);
-    console.log('received: %s', msg);
-
-    ws.send(`I heard you say "${msg}"`);
-  });
-
-  ws.send('Hello webSocket');
-});
+socket.onmessage = (event) => {
+  console.log('received: ', event.data);
+};
 `
