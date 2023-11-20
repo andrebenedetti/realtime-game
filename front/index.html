@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="./dist/main.css" />
 </head>
 
-<body class="h-screen truncate">
+<body class="h-screen truncate" id="root">
   <main class="px-8 h-full">
     <h1 class="font-bold text-3xl">The Game</h1>
     <section class="mt-2">
@@ -23,11 +23,6 @@
     <canvas id="canvas" width="800" height="600"></canvas>
     <script src="dist/main.js"></script>
   </main>
-  <div id="toast"
-    class="w-full flex items-center justify-between h-0 bg-red-500 sticky bottom-0 text-sm px-2 truncate transition transition-[height] ease-in-out duration-300">
-    <span id="toast-text"></span>
-    <button type="button" class="text-xl font-bold px-1">X</button>
-  </div>
 </body>
 
 </html>

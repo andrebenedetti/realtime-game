@@ -1,15 +1,32 @@
-export function toast(message: string) {
-    const toastId = "toast"
-    const toast = document.getElementById(toastId)
-    if (!toast) {
-        console.warn(`Tried to invoke toast but an element with id #${toastId} was not found`)
-        return
-    }
+let element: HTMLDivElement
+let text: HTMLSpanElement
+let dismissBtn: HTMLButtonElement
 
-    const text = document.getElementById("toast-text")
-    if (text) {
-        text.innerHTML = message
-    }
-    toast.classList.remove("h-0")
-    toast.classList.add("h-8")
+export function createToast() {
+    element = document.createElement("div")
+    element.setAttribute("class", "w-full flex items-center justify-between h-0 bg-red-500 sticky bottom-0 text-sm px-2 truncate transition transition-[height] ease-in-out duration-300")
+
+    text = document.createElement("span")
+
+    dismissBtn = document.createElement("button")
+    dismissBtn.setAttribute("type", "button")
+    dismissBtn.setAttribute("class", "text-xl font-bold px-1")
+
+    element.appendChild(text)
+    element.appendChild(dismissBtn)
+
+    const root = document.getElementById("root")
+    root?.appendChild(element)
+
+}
+
+export function dismissToast() {
+    element.classList.remove("h-8")
+    element.classList.add("h-0")
+}
+
+export function toast(message: string) {
+    text.innerHTML = message
+    element.classList.remove("h-0")
+    element.classList.add("h-8")
 }
