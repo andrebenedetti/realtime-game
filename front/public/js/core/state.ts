@@ -1,4 +1,4 @@
-import type { WorldObject } from '../../../shared/runtime'
+import type { WorldObject } from '../../../../shared/runtime'
 
 export function storeWorldState(objs: WorldObject[]) {
     window.world = objs
