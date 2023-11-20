@@ -1,3 +1,4 @@
+import { toast } from "../ui/toast";
 import { storeWorldState } from "./state";
 
 export function setupWebsocket() {
@@ -7,10 +8,13 @@ export function setupWebsocket() {
     socket.send("Hello Server!");
   });
 
+  socket.addEventListener("error", (event) => {
+    toast("There was an error connecting to our servers. If the problem persists, contact our support.")
+  })
+
   socket.addEventListener("message", (event) => {
     const separator = ";";
     const state = event.data.split(",").map((wo: string) => {
-      // assumes we only have player objects
       const [type, x, y, username] = wo.split(separator);
       return {
         type,

@@ -8,10 +8,25 @@
   <link rel="stylesheet" href="./dist/main.css" />
 </head>
 
-<body>
-  <p class="text-xl">Realtime Game</p>
-  <canvas id="canvas" width="800" height="600"></canvas>
-  <script src="dist/main.js"></script>
+<body class="h-screen truncate">
+  <main class="px-8 h-full">
+    <h1 class="font-bold text-3xl">The Game</h1>
+    <section class="mt-2">
+      <p class="mb-2">Welcome, guest! We need you to provide a username before you continue...</p>
+      <input placeholder="What's your username?" class="border rounded-md px-2 py-1" />
+      <button
+        class="border px-2 py-1 min-w-[120px] rounded-md bg-orange-600 hover:bg-orange-500 text-white">Start</button>
+    </section>
+    <section class="bg-gray-100 mt-4">
+      <h2>Players online: 0</h2>
+    </section>
+    <canvas id="canvas" width="800" height="600"></canvas>
+    <script src="dist/main.js"></script>
+  </main>
+  <div id="toast" class="w-full flex items-center justify-between h-0 bg-red-500 sticky bottom-0 text-sm px-2 truncate">
+    <span id="toast-text"></span>
+    <button type="button" class="text-xl font-bold px-1">X</button>
+  </div>
 </body>
 
 </html>

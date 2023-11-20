@@ -1,5 +1,6 @@
 import { drawPlayer, initCanvas } from "../ui";
 import { getWorldState } from "./state";
+import { setupWebsocket } from "./websocket";
 
 function loop() {
     for (let obj of getWorldState()) {
@@ -10,6 +11,7 @@ function loop() {
 export function run() {
     const FPS = 50;
 
+    setupWebsocket()
     initCanvas()
     setInterval(() => {
         loop()
