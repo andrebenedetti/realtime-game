@@ -1,5 +1,6 @@
 import { WebSocketServer } from "ws";
 import { Runtime } from "./lib/application/runtime";
+import { getPort, server } from "./dev-server";
 
 const wss = new WebSocketServer({ port: 8080 });
 
@@ -36,3 +37,5 @@ wss.on("connection", function connection(ws) {
     }
   }, 1000 / messagesPerSecond)
 });
+
+server.listen(getPort())
