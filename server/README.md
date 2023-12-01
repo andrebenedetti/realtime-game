@@ -1,5 +1,10 @@
-# Debugging on Chrome
+# Running the server
 
+`
+bun start
+`
+
+# Debugging on Chrome
 
 Run the following code on the dev tools console.
 Make sure to pass the correct port to the WebSocketServer
