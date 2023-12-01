@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
-    "bundle": "webpack",
+    "build:clean": "rm -rf ./build",
+    "pack": "webpack",
+    "dev": "npm run build && npm run pack && npm run build:clean",
     "tw": "npx tailwindcss -i ./public/css/main.css -o ./dist/main.css --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
