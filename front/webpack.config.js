@@ -1,4 +1,4 @@
 module.exports = {
-    entry: './dist/index.js',
+    entry: './build/front/public/js/index.js',
     mode: "development"
 };

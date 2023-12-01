@@ -26,7 +26,5 @@ export function initCanvas() {
   }
 
   ctx = context
-  c.setAttribute("width", String(window.screen.width));
-  c.setAttribute("height", String(window.screen.height));
 }
 

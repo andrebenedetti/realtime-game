@@ -1,5 +1,8 @@
 import { run } from "./core";
-import { setupWebsocket } from "./core/websocket";
+import { createToast } from "./ui/toast";
 
-setupWebsocket()
+document.addEventListener("DOMContentLoaded", () => {
+    createToast()
+})
+
 run()
