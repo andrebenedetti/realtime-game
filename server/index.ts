@@ -16,6 +16,7 @@ wss.on("connection", function connection(ws) {
   const messagesPerSecond = 60
   const sampleRate = 100
   let counter = 0;
+
   setInterval(() => {
     if (counter === 0) {
       console.time("tick")
@@ -28,7 +29,7 @@ wss.on("connection", function connection(ws) {
       console.timeEnd("tick")
     }
 
-    ws.send(runtime.serialize());
+    ws.send("tick," + runtime.serialize());
     if (counter === sampleRate) {
       console.timeEnd("serialize")
       counter = 0
