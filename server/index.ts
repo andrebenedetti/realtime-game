@@ -38,6 +38,7 @@ wss.on("connection", function connection(ws) {
   }, 1000 / messagesPerSecond)
 });
 
-server.listen(getPort(), () => {
-  console.log(`Listening on port ${getPort()}`)
+const port = getPort()
+server.listen(port, () => {
+  console.log(`Listening on port ${port}`)
 })
