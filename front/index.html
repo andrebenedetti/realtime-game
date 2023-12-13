@@ -1,28 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WS example</title>
+    <link rel="stylesheet" href="../dist/main.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WS example</title>
-  <link rel="stylesheet" href="./dist/main.css" />
-</head>
-
-<body class="h-screen truncate" id="root">
-  <main class="px-8 h-full">
-    <h1 class="font-bold text-3xl">The Game</h1>
-    <section class="mt-2">
-      <p class="mb-2">Welcome, guest! We need you to provide a username before you continue...</p>
-      <input placeholder="What's your username?" class="border rounded-md px-2 py-1" />
-      <button
-        class="border px-2 py-1 min-w-[120px] rounded-md bg-orange-600 hover:bg-orange-500 text-white">Start</button>
-    </section>
-    <section class="bg-gray-100 mt-4">
-      <h2>Players online: 0</h2>
-    </section>
-    <canvas id="canvas" width="800" height="600"></canvas>
-    <script src="dist/main.js"></script>
-  </main>
-</body>
-
+  <body class="h-screen truncate" id="root">
+    <main class="px-8 h-full">
+      <h1 class="font-bold text-3xl">The Game</h1>
+      <section class="mt-2">
+        <p class="mb-2">
+          Welcome, guest! We need you to provide a username before you
+          continue...
+        </p>
+        <input
+          id="usernameInput"
+          placeholder="What's your username?"
+          class="border rounded-md px-2 py-1"
+        />
+        <button
+          id="submitAnonymousLogin"
+          class="border px-2 py-1 min-w-[120px] rounded-md bg-orange-600 hover:bg-orange-500 text-white"
+        >
+          Start
+        </button>
+      </section>
+      <section class="bg-gray-100 mt-4">
+        <h2>Players online: 0</h2>
+      </section>
+      <canvas id="canvas" width="800" height="600"></canvas>
+      <script src="dist/main.js"></script>
+    </main>
+  </body>
 </html>

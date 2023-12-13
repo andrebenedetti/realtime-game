@@ -17,7 +17,6 @@ export function createToast() {
 
     const root = document.getElementById("root")
     root?.appendChild(element)
-
 }
 
 export function dismissToast() {

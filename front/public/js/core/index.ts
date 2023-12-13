@@ -1,6 +1,6 @@
 import { drawPlayer, initCanvas } from "../ui";
 import { getWorldState } from "./state";
-import { setupWebsocket } from "./websocket";
+import { setupWebsocket } from "./socket/websocket";
 
 function loop() {
     for (let obj of getWorldState()) {
