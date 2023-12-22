@@ -30,9 +30,24 @@ const loadFile = async (path: string): Promise<{ file: Buffer, mime: string }> =
 }
 
 const serveStaticFile = async (req: IncomingMessage, res: ServerResponse<IncomingMessage>) => {
-    const { file, mime } = await loadFile(req.url || "/")
-    res.writeHead(200, "OK", { "Content-type": mime })
-    res.write(file)
+    try {
+        const { file, mime } = await loadFile(req.url || "/")
+        res.writeHead(200, "OK", { "Content-type": mime })
+        res.write(file)
+    } catch (e) {
+        if (e instanceof Error && "code" in e && e.code === "ENOENT") {
+            // Files that we don't want to notify about they being missing, as we really don't have them.
+            const ignoreList = ["favicon.ico"]
+
+            // @ts-expect-error ts doesn't infer that e is instanceof Error even though we already checked it in the parent if condition
+            if ("path" in e && !ignoreList.some(f => e.path.includes(f))) {
+                console.error(`The file ${e.path} was not found by the local dev server. Did you forget to build the client?`)
+            }
+            if (!res.headersSent) {
+                res.writeHead(404, "Not found", {})
+            }
+        }
+    }
     res.end()
 }
 
